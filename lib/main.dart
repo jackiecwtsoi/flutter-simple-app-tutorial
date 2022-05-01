@@ -1,7 +1,8 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart'; // step 1
 
-void main() => runApp(MySimpleApp());
+void main() => runApp(MySimpleApp()); // step 1
 
+// step 2
 class MySimpleApp extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
@@ -9,6 +10,7 @@ class MySimpleApp extends StatefulWidget {
   }
 }
 
+// step 3
 class MySimpleAppState extends State<MySimpleApp> {
   var n1, n2, n3; // step 1
   var sum; // step 1
@@ -73,12 +75,21 @@ class MySimpleAppState extends State<MySimpleApp> {
   }
 }
 
-class NumberInput extends StatelessWidget {
-  // widget 1
+class NumberInput extends StatefulWidget {
+  // step 1
   final String numberInput;
   final TextEditingController inputController;
 
   NumberInput(this.numberInput, this.inputController);
+
+  @override
+  State<StatefulWidget> createState() {
+    return NumberInputState();
+  }
+}
+
+class NumberInputState extends State<NumberInput> {
+  // step 1
 
   @override
   Widget build(BuildContext context) {
@@ -87,10 +98,10 @@ class NumberInput extends StatelessWidget {
         margin: EdgeInsets.all(10), // add margin around TextField
         child: TextField(
             // widget 2-2
-            controller: this.inputController, // step 3
+            controller: widget.inputController, // step 3
             decoration: InputDecoration(
-              hintText: this.numberInput,
-              labelText: this.numberInput,
+              hintText: widget.numberInput,
+              labelText: widget.numberInput,
             ),
             keyboardType: TextInputType.numberWithOptions(
               decimal: true,
